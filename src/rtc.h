@@ -8,7 +8,7 @@
 *       This library is based on the code by jarzebski: 
 *           https://github.com/jarzebski/Arduino-DS1307
 *
-* URL:  https://github.com/EL-LAB/EL-LAB_EEPROM_24LC256_Arduino_Library
+* URL:  https://github.com/EL-LAB/EL-LAB_RTC_DS1307_Arduino_Library
 * 
 * AUTHOR:  Diego Villalobos    START DATE :  July 17 2018
 *
