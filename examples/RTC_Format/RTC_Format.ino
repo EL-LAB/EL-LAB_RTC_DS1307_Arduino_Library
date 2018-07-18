@@ -14,7 +14,7 @@
 
 #include <rtc.h>
 
-RTC myRTC;
+RTC myRTC(0x68); // I2C address.
 DateTime dt;
 
 void setup()
@@ -51,9 +51,9 @@ void loop()
   Serial.print("Long format with month name: ");
   Serial.println(myRTC.dateFormat("d F Y H:i:s",  dt));
 
-  Serial.print("Short format with 12h mode: ");
+  Serial.print("Short format with 12h mode:  ");
   Serial.println(myRTC.dateFormat("jS M y, h:ia", dt));
-
+  
   Serial.print("Today is:                    ");
   Serial.print(myRTC.dateFormat("l, z", dt));
   Serial.println(" days of the year.");
