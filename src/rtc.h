@@ -32,8 +32,6 @@
 
 #include <Wire.h>
 
-#define RTC_ADDRESS     0x68
-
 #define RTC_REG_TIME    0x00
 
 struct DateTime { 
@@ -49,7 +47,7 @@ struct DateTime {
 
 class RTC {
 	public:
-		RTC(void);
+		RTC(uint8_t address);
 
 		bool begin(void);
 
@@ -62,6 +60,7 @@ class RTC {
 
     private:
 		DateTime t;
+		uint8_t _devAddress;
 
 		char *strDayOfWeek(uint8_t dayOfWeek);
 		char *strMonth(uint8_t month);
