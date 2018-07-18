@@ -14,7 +14,7 @@
 
 #include <rtc.h>
 
-RTC myRTC;
+RTC myRTC(0x68); // I2C address.
 DateTime dt;
 
 void setup()
