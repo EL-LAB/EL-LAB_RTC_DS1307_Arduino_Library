@@ -4,6 +4,7 @@ This library allows configuring the RTC DS1307 to monitor time through the I2C i
 There is additional information about the library and its uses in the following sections:
 - [Arduino Examples](https://github.com/EL-LAB/EL-LAB_RTC_DS1307_Arduino_Library#arduino-examples)
 - [Library Functions](https://github.com/EL-LAB/EL-LAB_RTC_DS1307_Arduino_Library#library-functions)
+- [Date Formats](https://github.com/EL-LAB/EL-LAB_RTC_DS1307_Arduino_Library#date-formats)
 
 ## Arduino Examples
 #### [RTC_Start](/examples/RTC_Start/RTC_Start.ino)
@@ -39,7 +40,7 @@ It allows to format the date and time provided by the RTC in several ways.
 ```C++
 char* dateFormat(const char* dateFormat, DateTime dt);
 ```
-### Date Formats
+## Date Formats
 #### Day
 - d : Day of the month in 2 digits with leading zeros (01 to 31)
 - D : A textual representation of a day in three letters (Mon through Sun)
