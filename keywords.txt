@@ -30,7 +30,7 @@ begin		KEYWORD2
 setDateTime	KEYWORD2
 getDateTime	KEYWORD2
 isReady		KEYWORD2
-dateFormat	KETWORD2
+dateFormat	KEYWORD2
 
 ###########################################################
 # Instances (KEYWORD2)
