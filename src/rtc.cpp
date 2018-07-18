@@ -24,8 +24,8 @@
 const uint8_t daysArray [] PROGMEM = { 31,28,31,30,31,30,31,31,30,31,30,31 };
 const uint8_t dowArray[] PROGMEM = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
 
-RTC::RTC(void) {
-
+RTC::RTC(uint8_t address) {
+    _devAddress = address; // I2C address.
 }
 
 bool RTC::begin(void) {
@@ -42,12 +42,12 @@ bool RTC::begin(void) {
     t.dayOfWeek = 6;
     t.unixtime = 946681200;
 
-    Wire.beginTransmission(RTC_ADDRESS);
+    Wire.beginTransmission(_devAddress);
     return (Wire.endTransmission() == 0);
 }
 
 void RTC::setDateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t minute, uint8_t second) {
-    Wire.beginTransmission(RTC_ADDRESS);
+    Wire.beginTransmission(_devAddress);
     Wire.write(RTC_REG_TIME);
     Wire.write(dec2bcd(second));
     Wire.write(dec2bcd(minute));
@@ -217,11 +217,11 @@ char* RTC::dateFormat(const char* dateFormat, DateTime dt) {
 DateTime RTC::getDateTime(void) {
     int values[7];
 
-    Wire.beginTransmission(RTC_ADDRESS);
+    Wire.beginTransmission(_devAddress);
     Wire.write(RTC_REG_TIME);
     Wire.endTransmission();
 
-    Wire.requestFrom(RTC_ADDRESS, 7);
+    Wire.requestFrom((int) _devAddress,(int) 7);
 
     while(!Wire.available()) {};
 
@@ -249,11 +249,11 @@ DateTime RTC::getDateTime(void) {
 }
 
 uint8_t RTC::isReady(void)  {
-    Wire.beginTransmission(RTC_ADDRESS);
+    Wire.beginTransmission(_devAddress);
 
     Wire.write(RTC_REG_TIME);
     Wire.endTransmission();
-    Wire.requestFrom(RTC_ADDRESS, 1);
+    Wire.requestFrom((int) _devAddress,(int) 1);
 
     while(!Wire.available()) {};
 
@@ -275,105 +275,105 @@ uint8_t RTC::dec2bcd(uint8_t dec) {
 char *RTC::strDayOfWeek(uint8_t dayOfWeek) {
     switch (dayOfWeek) {
         case 1:
-            return "Monday";
+            return (char *)"Monday";
             break;
         case 2:
-            return "Tuesday";
+            return (char *)"Tuesday";
             break;
         case 3:
-            return "Wednesday";
+            return (char *)"Wednesday";
             break;
         case 4:
-            return "Thursday";
+            return (char *)"Thursday";
             break;
         case 5:
-            return "Friday";
+            return (char *)"Friday";
             break;
         case 6:
-            return "Saturday";
+            return (char *)"Saturday";
             break;
         case 7:
-            return "Sunday";
+            return (char *)"Sunday";
             break;
         default:
-            return "Unknown";
+            return (char *)"Unknown";
     }
 }
 
 char *RTC::strMonth(uint8_t month) {
     switch (month) {
         case 1:
-            return "January";
+            return (char *)"January";
             break;
         case 2:
-            return "February";
+            return (char *)"February";
             break;
         case 3:
-            return "March";
+            return (char *)"March";
             break;
         case 4:
-            return "April";
+            return (char *)"April";
             break;
         case 5:
-            return "May";
+            return (char *)"May";
             break;
         case 6:
-            return "June";
+            return (char *)"June";
             break;
         case 7:
-            return "July";
+            return (char *)"July";
             break;
         case 8:
-            return "August";
+            return (char *)"August";
             break;
         case 9:
-            return "September";
+            return (char *)"September";
             break;
         case 10:
-            return "October";
+            return (char *)"October";
             break;
         case 11:
-            return "November";
+            return (char *)"November";
             break;
         case 12:
-            return "December";
+            return (char *)"December";
             break;
         default:
-            return "Unknown";
+            return (char *)"Unknown";
     }
 }
 
 char *RTC::strAmPm(uint8_t hour, bool uppercase) {
     if (hour < 12) {
         if (uppercase) {
-            return "AM";
+            return (char *)"AM";
         }
         else {
-            return "am";
+            return (char *)"am";
         }
     }
     else {
         if (uppercase) {
-            return "PM";
+            return (char *)"PM";
         }
         else {
-            return "pm";
+            return (char *)"pm";
         }
     }
 }
 
 char *RTC::strDaySufix(uint8_t day) {
     if (day % 10 == 1) {
-        return "st";
+        return (char *)"st";
     }
     if (day % 10 == 2) {
-        return "nd";
+        return (char *)"nd";
     }
     if (day % 10 == 3) {
-        return "rd";
+        return (char *)"rd";
     }
 
-    return "th";
+    return (char *)"th";
 }
 
 uint8_t RTC::hour12(uint8_t hour24) {
