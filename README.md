@@ -2,8 +2,8 @@
 This library allows configuring the RTC DS1307 to monitor time through the I2C interface.
 
 There is additional information about the library and its uses in the following sections:
-- [Arduino Examples](https://github.com/EL-LAB/EL-LAB_EEPROM_24LC256_Arduino_Library#arduino-examples)
-- [Library Functions](https://github.com/EL-LAB/EL-LAB_EEPROM_24LC256_Arduino_Library#library-functions)
+- [Arduino Examples](https://github.com/EL-LAB/EL-LAB_RTC_DS1307_Arduino_Library#arduino-examples)
+- [Library Functions](https://github.com/EL-LAB/EL-LAB_RTC_DS1307_Arduino_Library#library-functions)
 
 ## Arduino Examples
 #### [RTC_Start](/examples/RTC_Start/RTC_Start.ino)
